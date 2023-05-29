@@ -1,11 +1,11 @@
 ﻿public class Async
 {
 
-    public string DownloadAndProcess(string url)
+    public async Task<string> DownloadAndProcess(string url)
     {
         var client = new HttpClient();
-        var response = client.GetAsync(url).Result;
-        var content = response.Content.ReadAsStringAsync().Result;
+        var response = await client.GetAsync(url);
+        var content = await response.Content.ReadAsStringAsync();
         return content.ToUpper();
     }
 }
